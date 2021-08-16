@@ -1,6 +1,6 @@
 package com.arielherndz.myblog.data.remote.home
 
-import com.arielherndz.myblog.core.Resource
+import com.arielherndz.myblog.core.Result
 import com.arielherndz.myblog.data.model.Post
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -8,7 +8,7 @@ import kotlinx.coroutines.tasks.await
 
 class HomeScreenDataSource {
 
-    suspend fun getLatersPosts(): Resource<List<Post>> {
+    suspend fun getLatersPosts(): Result<List<Post>> {
         val postList = mutableListOf<Post>()
         val querySnapshot = FirebaseFirestore.getInstance().collection("post").get().await()
 
@@ -19,6 +19,6 @@ class HomeScreenDataSource {
             }
 
         }
-        return Resource.Success(postList)
+        return Result.Success(postList)
     }
 }
